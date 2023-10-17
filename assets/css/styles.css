@@ -1,0 +1,41 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+
+    --header-color: #0f2413;
+    --board-color: #2F4F30;
+    --high-lights-font: #F8DE22;
+    --font-color: #FFFFFF;
+}
+
+html, body {
+    background-color: var(--board-color);
+}
+
+.title {
+    text-align: center;
+    width: 100%;
+    color: var(--font-color);
+    background-color: var(--header-color);
+    padding: 20px;
+    font-size: 25px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.player-game, .pc-game {
+    color: var(--high-lights-font);
+
+}
+
+#player-cards, #pc-cards {
+    height: 250px;
+}
+
+.game-card {
+    position: relative;
+    width: 150px;
+    left: 100px;
+    margin-left: -70px;
+}
