@@ -11,7 +11,7 @@ let cardsDeck       = [];
 const cardsTypes    = ['C', 'D', 'H', 'S'];
 const specialCards = ['A', 'J', 'Q', 'K'];
 
-
+//This functi9n creates a new deck
 const createDeck = () => {
 
     for( let i = 2; i <= 10; i++ ) {
@@ -28,7 +28,7 @@ const createDeck = () => {
         }
     }
 
-    console.log( cardsDeck );
+    //console.log( cardsDeck );
     cardsDeck = _.shuffle( cardsDeck );
     console.log( cardsDeck );
 
@@ -36,3 +36,19 @@ const createDeck = () => {
 }
 
 createDeck();
+
+//This function takes one card each time is invoked, and remove the card taken from the deck
+const hitCard = () => {
+
+    if (cardsDeck.length === 0 ) {
+        throw 'The deck is empty, there is not more cards';
+    }
+
+    const card = cardsDeck.pop();
+    console.log(cardsDeck);
+    console.log(card);
+    return card;
+}
+
+
+//hitCard();
