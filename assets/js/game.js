@@ -46,9 +46,24 @@ const hitCard = () => {
 
     const card = cardsDeck.pop();
     console.log(cardsDeck);
-    console.log(card);
+    // console.log(card);
     return card;
 }
 
 
 //hitCard();
+
+//This function extracts the value for each card and return the value
+const cardValue = ( card ) => {
+
+    const value = card.substring( 0, card.length - 1 );
+
+    // variable by 1 converts string to int
+    return ( isNaN( value ) ) ?
+            ( value === 'A' ) ? 11 : 10
+            : value * 1;
+
+}
+
+const value = cardValue( hitCard() );
+console.log({value});
