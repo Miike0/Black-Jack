@@ -19,6 +19,7 @@ let playerPoints = 0,
 
 const btnHit = document.querySelector('#btnHit');
 const playerCount = document.querySelector('#playerCount');
+const playerCardsContainer = document.querySelector('#player-cards');
 
 //This functi9n creates a new deck
 const createDeck = () => {
@@ -82,5 +83,17 @@ btnHit.addEventListener('click', () => {
     playerPoints += cardValue( card );
     playerCount.innerText = playerPoints;
 
+    const imgCard = document.createElement('img');
+    //assets/cards/2C.png
+    imgCard.src = `assets/cards/${ card }.png`;
+    imgCard.classList.add('game-card');
+    playerCardsContainer.append( imgCard );
 
+    if ( playerPoints > 21 ) {
+        console.warn(' Sorry, you lost ');
+        btnHit.disabled = true;
+    } else if ( playerPoints === 21 ) {
+        console.warn('21, genial!');
+        btnHit.disabled = true;
+    }
 });
