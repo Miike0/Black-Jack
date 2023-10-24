@@ -21,6 +21,11 @@ const btnHit = document.querySelector('#btnHit');
 const playerCount = document.querySelector('#playerCount');
 const playerCardsContainer = document.querySelector('#player-cards');
 
+const computerCount = document.querySelector('#pcCount');
+const computerCardsContainer = document.querySelector('#pc-cards');
+
+const btnStand = document.querySelector('#btnStand');
+
 //This functi9n creates a new deck
 const createDeck = () => {
 
@@ -58,8 +63,33 @@ const hitCard = () => {
     return card;
 }
 
+//Computer logic
+//This function contains the logic for the computer shift
+//This function receive the player points to delimiter the minimum points to achieve
+const computerShift = ( minimumPoints ) => {
 
-//hitCard();
+    do {
+
+        const card = hitCard(); 
+        computerPoints += cardValue( card );
+        computerCount.innerText = computerPoints;
+
+        const imgCard = document.createElement('img');
+        //assets/cards/2C.png
+        imgCard.src = `assets/cards/${ card }.png`;
+        imgCard.classList.add('game-card');
+        computerCardsContainer.append( imgCard );
+
+        //This is the case where the user lose due to he hit more than 21 points
+        //So, the computer just need to hit one card to win
+        if ( minimumPoints > 21 ) {
+            break;
+        }
+
+    } while( (computerPoints < minimumPoints) && (minimumPoints <= 21) );
+
+};
+
 
 //This function extracts the value for each card and return the value
 const cardValue = ( card ) => {
@@ -92,8 +122,19 @@ btnHit.addEventListener('click', () => {
     if ( playerPoints > 21 ) {
         console.warn(' Sorry, you lost ');
         btnHit.disabled = true;
+        btnStand.disabled = true;
+        computerShift( playerPoints );
     } else if ( playerPoints === 21 ) {
         console.warn('21, genial!');
         btnHit.disabled = true;
+        btnStand.disabled = true;
+        computerShift( playerPoints );
     }
+});
+
+btnStand.addEventListener('click', () => {
+    btnHit.disabled = true;
+    btnStand.disabled = true;
+
+    computerShift( playerPoints );
 });
