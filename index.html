@@ -20,9 +20,9 @@
     <div class=" mt-4">
         <div class="col text-center">
             
-            <button class="btn btn-danger">New Game</button>
-            <button class="btn btn-primary">Hit</button>
-            <button class="btn btn-primary">Stand</button>
+            <button id="btnNew" class="btn btn-danger">New Game</button>
+            <button id="btnHit" class="btn btn-primary">Hit</button>
+            <button id="btnStand" class="btn btn-primary">Stand</button>
             
         </div>
     </div>
@@ -30,12 +30,10 @@
     <div class="row container">
         <div class="col">
             
-            <h1 class="player-game " >Player - <small>0</small></h1>
+            <h1 class="player-game " >Player - <small id="playerCount">0</small></h1>
             <div id="player-cards" >
                 <img class="game-card" src="assets/cards/2C.png">
-                <img class="game-card" src="assets/cards/2C.png">
-                <img class="game-card" src="assets/cards/2C.png">
-                <img class="game-card" src="assets/cards/2C.png">
+
                     
             </div>
         </div>

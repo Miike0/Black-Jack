@@ -11,6 +11,15 @@ let cardsDeck       = [];
 const cardsTypes    = ['C', 'D', 'H', 'S'];
 const specialCards = ['A', 'J', 'Q', 'K'];
 
+let playerPoints = 0,
+    computerPoints = 0;
+
+
+//HTML references
+
+const btnHit = document.querySelector('#btnHit');
+const playerCount = document.querySelector('#playerCount');
+
 //This functi9n creates a new deck
 const createDeck = () => {
 
@@ -45,8 +54,6 @@ const hitCard = () => {
     }
 
     const card = cardsDeck.pop();
-    console.log(cardsDeck);
-    // console.log(card);
     return card;
 }
 
@@ -65,5 +72,15 @@ const cardValue = ( card ) => {
 
 }
 
-const value = cardValue( hitCard() );
-console.log({value});
+
+//Events
+
+
+btnHit.addEventListener('click', () => {
+
+    const card = hitCard(); 
+    playerPoints += cardValue( card );
+    playerCount.innerText = playerPoints;
+
+
+});
