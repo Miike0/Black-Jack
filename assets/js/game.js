@@ -25,6 +25,7 @@ const computerCount = document.querySelector('#pcCount');
 const computerCardsContainer = document.querySelector('#pc-cards');
 
 const btnStand = document.querySelector('#btnStand');
+const btnNewGame = document.querySelector('#btnNewGame');
 
 //This functi9n creates a new deck
 const createDeck = () => {
@@ -43,9 +44,8 @@ const createDeck = () => {
         }
     }
 
-    //console.log( cardsDeck );
     cardsDeck = _.shuffle( cardsDeck );
-    console.log( cardsDeck );
+    //console.log( cardsDeck );
 
     return cardsDeck;
 }
@@ -80,6 +80,7 @@ const computerShift = ( minimumPoints ) => {
         imgCard.classList.add('game-card');
         computerCardsContainer.append( imgCard );
 
+
         //This is the case where the user lose due to he hit more than 21 points
         //So, the computer just need to hit one card to win
         if ( minimumPoints > 21 ) {
@@ -87,6 +88,20 @@ const computerShift = ( minimumPoints ) => {
         }
 
     } while( (computerPoints < minimumPoints) && (minimumPoints <= 21) );
+
+    setTimeout(() => {
+        if ( computerPoints === minimumPoints ) {
+            alert('No one won :(');
+        } else if ( minimumPoints > 21 ) {
+            alert('Computer won!');
+        } else if ( computerPoints > 21 ) {
+            alert('Player Won!');
+        } else {
+            alert('Computer Won!');
+        }
+    }, 200 );
+
+    
 
 };
 
@@ -137,4 +152,21 @@ btnStand.addEventListener('click', () => {
     btnStand.disabled = true;
 
     computerShift( playerPoints );
+});
+
+btnNewGame.addEventListener('click', () => {
+    cardsDeck = [];
+    cardsDeck = createDeck();
+
+    playerPoints = 0;
+    computerPoints = 0;
+
+    playerCount.innerText = 0;
+    computerCount.innerText = 0;
+
+    playerCardsContainer.innerHTML = '';
+    computerCardsContainer.innerHTML = '';
+
+    btnHit.disabled = false;
+    btnStand.disabled = false;
 });
